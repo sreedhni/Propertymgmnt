@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{%block body_block %}
+<body>
+    <table class="table table-stripped">
+        <tr>
+            <td>name</td>
+            <td>Unit_name</td>
+            <td>Agreement end date</td>
+            <td>rent_cost</td>
+             <td>unit_type</td>
+
+        </tr>
+        {% for l in lease%}
+
+        <tr>
+            <td>{{l.tenant}}</td>
+            <td>{{l.unit}}</td>
+            <td>{{l.agreement_end_date}}</td>
+            <td>{{l.unit.rent_cost}}</td>
+            <td>{{l.unit.type}}</td>
+          
+            <td>
+               
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+    {%endblock%}

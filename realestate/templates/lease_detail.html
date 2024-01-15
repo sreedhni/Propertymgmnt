@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+{%block body_block %}
+<body>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{lease.tenant}}</h5>
+          <p class="card-text">{{lease.unit}}</p>
+          <p class="card-text">{{lease.agreement_end_date}}</p>
+          <p class="card-text">{{lease.unit.rent_cost}}</p>
+
+
+        </div>
+    
+      </div>
+
+      {%endblock%}

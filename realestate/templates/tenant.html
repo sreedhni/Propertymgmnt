@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+{%block body_block %}
+<body>
+    <table class="table table-stripped">
+        <tr>
+            <td>name</td>
+            <td>address</td>
+            <td>document_proof</td>
+            <td>Action</td>
+
+        </tr>
+        {% for t in tenant%}
+
+        <tr>
+            <td>{{t.name}}</td>
+            <td>{{t.address }}</td>
+            <td><img src="{{t.document_proofs.url}}" alt=""></td>
+          
+            <td>
+                <td><a href="{% url 'lease-detail' t.id %}">lease details</a></td>
+               
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+    {%endblock%}

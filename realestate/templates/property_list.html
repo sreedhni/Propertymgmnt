@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+{%block body_block %}
+<body>
+    <table class="table table-stripped">
+        <tr>
+            <td>name</td>
+            <td>address</td>
+            <td>location</td>
+            <td>feature</td>
+            <td>Action</td>
+
+        </tr>
+        {% for p in properties%}
+        <tr>
+            <td>{{p.name}}</td>
+            <td>{{p.address}}</td>
+            <td>{{p.location}}</td>
+            <td>{{p.features}}</td>
+            <td>
+                <a href="{% url 'property-detail' p.id %}">details</a>
+                <a href="{% url 'unit-add' p.id %}">add Unit</a>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+    {%endblock%}
