@@ -83,6 +83,7 @@ class SignInView(FormView):
                 messages.success(request,"login successfully")
                 return redirect("index")
             elif not usr.is_superuser:
+                login(request,usr)
                 return redirect("tenant-add")
 
 
@@ -170,6 +171,12 @@ class TenantView(ListView):
     model=Tenant
     template_name="tenant.html"
     context_object_name="tenant"
+
+class TenantDetailView(DetailView):
+    template_name="tenant_detail.html"
+    model=Tenant
+    context_object_name="tenants"
+
 @method_decorator(decs,name="dispatch")
 
 class LeaseDetailView(DetailView):
@@ -193,6 +200,8 @@ def sign_out_view(request,*args,**kwargs):
     logout(request)
     return redirect("signin")  
     
+class HomeView(TemplateView):
+    template_name="homepage.html"
 
 
     
