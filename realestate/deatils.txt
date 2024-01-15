@@ -1,0 +1,45 @@
+it is a fully python django project,which contains two modules User(tenant) and admin.
+
+Add property,list property, add unit, list unit list tenant details,list the details of property,and 
+view the lease details (which meanas which tenant assigned the particular unit)these are the functionality
+that admin can do.Admin required to login to do these functionality
+           admin
+        username:admin
+        password : admin (superuser that i created)
+
+
+User which meanas tenant he want to create account and login to do his functionality.
+tenant can create account ,add lease.
+Tenant profile can view with name,address,document proof,personal information and rental information and 
+tenant can search his requires unit based on the features
+
+            tenant
+        username : Abin
+        password : Abin@123  (user that i created)
+
+Backend completed by python and django
+Front end  completed by html,css,bootstarp,javascript
+DataBase used-SQLite
+
+localhost:8000 
+=====================
+
+This url used to get the home page and the page contains a Signup and Signin button .only the signed in 
+person can access the details
+
+localhost:8000/property/
+============================
+
+This url used to get the property page and the page can see with the following details
+--unit under the property and assigned tenant details
+
+localhost:8000/tenant/all/
+==============================
+This url used to get the Tenant page and the page can see with the following details
+--personal information and rental information 
+
+(Autherized person need to signed in for doing thbe functionality)
+
+
+package and libraries  used
+================================
