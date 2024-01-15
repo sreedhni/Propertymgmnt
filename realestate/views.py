@@ -35,8 +35,18 @@ def is_admin(fn):
 
 
 
+def is_user(fn):
+    def wrapper(request,*args,**Kwargs):
+        if not request.user.is_superuser:
+           return fn(request,*args,**Kwargs)
+    return wrapper
 
 
+
+
+
+
+ecs=[signin_required,is_user]
 
 
 decs=[signin_required,is_admin]
@@ -68,10 +78,14 @@ class SignInView(FormView):
             uname=form.cleaned_data.get("username")
             pwd=form.cleaned_data.get("password")
             usr=authenticate(request,username=uname,password=pwd)
-            if usr:
+            if usr.is_superuser:
                 login(request,usr)
                 messages.success(request,"login successfully")
                 return redirect("index")
+            elif not usr.is_superuser:
+                return redirect("tenant-add")
+
+
             else:
                 messages.error(request,"invalid creadential")
                 return render(request,self.template_name,{"form":form})  
@@ -81,18 +95,23 @@ class SignInView(FormView):
 class IndexView(TemplateView):
     template_name="index.html"
 
+
+@method_decorator(ecs,name="dispatch")
+
 class TenantCreateView(CreateView):
      template_name="tenant_add.html"
      model=Tenant
      form_class=TeanantCreateForm
      success_url=reverse_lazy("tenant-add")
 
+@method_decorator(ecs,name="dispatch")
 
 class UPropertyListView(ListView):
     template_name="property.html"
     model=Property
     context_object_name="properties"
 
+@method_decorator(ecs,name="dispatch")
 
 class LeaseAddView(CreateView):
     form_class=LeaseCreateForm

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+<body>
+    
+
+<body>
+    <table class="table table-stripped">
+        <tr>
+            <td>name</td>
+            <td>address</td>
+            <td>location</td>
+            <td>feature</td>
+            <td>Property_name</td>
+            <td>rent_cost</td>
+            <td>type</td>
+            <td>Action</td>
+
+        </tr>
+        {% for p in properties%}
+        {%for u in  p.unit_set.all%}      
+        <tr>
+            <td>{{p.name}}</td>
+            <td>{{p.address}}</td>
+            <td>{{p.location}}</td>
+            <td>{{p.features}}</td>
+            <td>{{u.property}}</td>
+            <td>{{u.rent_cost}}</td>
+            <td>{{u.type}}</td>
+            <td><a href="{% url 'lease-add' u.id %}">Book</a></td>
+           
+        </tr>
+        {%endfor%}
+        {%endfor%}
+    </table>
+</body>
+</html>
